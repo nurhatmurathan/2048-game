@@ -13,12 +13,13 @@ body{
 }
 
 #game-board{
-    --cell-size: 20vmin;
-    --cel-gap: 2vmin;
+    --cell-count: 0;
+    --cell-size: 15vmin;
+    --cel-gap: 1vmin;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(4,var(--cell-size));
-    grid-template-rows: repeat(4, var(--cell-size));
+    grid-template-columns: repeat(var(--cell-count),var(--cell-size));
+    grid-template-rows: repeat(var(--cell-count), var(--cell-size));
     gap: var(--cel-gap);
     border-radius: 1vmin;
 }
@@ -36,11 +37,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20vmin;
-    height: 20vmin;
-    border-radius: 1vmin;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: var(--cel-gap);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 8vmin;
+    font-size: 5vmin;
     font-weight: bold;
     background-color: rgb(255, 255, 255);
     color: #000;

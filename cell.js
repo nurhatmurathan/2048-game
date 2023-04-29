@@ -6,4 +6,13 @@ export class Cell{
         this.y = col;
         this.x = row;
     }
+
+    linkTile(tile){
+        tile.setXY(this.x, this.y);
+        this.linkedTile = tile;
+    }
+
+    isEmpty(){
+        return !this.linkedTile;
+    }
 }
