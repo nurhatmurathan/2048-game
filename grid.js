@@ -13,11 +13,22 @@ export class Grid {
                 this.cells.push(new Cell(gridElement, row, col));
             }
         }
+
+        this.cellsGroupedByColumn = this.groupCellsByColumn();
     }
 
     getRandomEmptyCell(){
         const emptyCells = this.cells.filter(cell => cell.isEmpty());
         const idx = Math.floor(Math.random() * emptyCells.length);
         return emptyCells[idx];
+    }
+
+    groupCellsByColumn(){
+        return this.cells.reduce((groupCells, cell) => {
+            groupCells[cell.x] = groupCells[cell.x] || [];
+            groupCells[cell.x][cell.y] = cell;
+            return groupCells;
+
+        }, []);
     }
 }
