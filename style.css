@@ -68,7 +68,7 @@ header {
 
 
 #header {
-    padding: 5em;
+    padding: 2em;
 }
 
 h1 {
@@ -91,20 +91,29 @@ h3 {
     color: #776E65;
 }
 
+
 a {
+    display: flex;
+    flex-direction: column;
     padding: 8px 16px;
     border-radius: 0.5em;
-    background-color: #8F7A66;
-    color: #F9F6F2;
     text-decoration: none;
     text-align: center;
     cursor: pointer;
+    color: #776E65; 
+}
+.link img {
+    filter: brightness(70%);
+    transition: all 0.5s ease;
 }
 
+.link:hover img {
+    filter: brightness(100%);
+}
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
     gap: 20px;
     width: 80%;
     max-width: 800px;

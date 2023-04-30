@@ -11,6 +11,8 @@ export class Grid {
             gridElement.style.setProperty("--cell-size", `12vmin`);
         }else if(size == 6){
             gridElement.style.setProperty("--cell-size", `10vmin`);
+        }else if(size == 8){
+            gridElement.style.setProperty("--cell-size", `8vmin`);
         }
         // console.log(this.GRID_SIZE);
         for (let row = 0; row < this.GRID_SIZE; row++) {
