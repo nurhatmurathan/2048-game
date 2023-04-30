@@ -15,7 +15,7 @@ export class Tile{
 
     setValue(value){
         this.value = value;
-        console.log(value);
+        // console.log(value);
         this.tileElement.textContent = this.value;
         const bglightness = 100 - Math.log2(value) * 9;
         this.tileElement.style.setProperty("--bg-lightness", `${bglightness}%`);
@@ -24,6 +24,12 @@ export class Tile{
 
     removeFromDOM(){
         this.tileElement.remove();
+    }
+
+    waitForTransitionEnd(){
+        return new Promise(resolve => {
+            this.tileElement.addEventListener("transitionend", resolve, { once : true });
+        });
     }
     
 }
