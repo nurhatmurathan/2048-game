@@ -15,7 +15,48 @@ body {
 
 #board-body {
     display: flex;
-    align-items: end;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 72px;
+    text-align: center;
+    color: #776e65;
+    margin: 0;
+  }
+  
+  .score, .best-score {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .score span, .best-score span {
+    font-size: 24px;
+    color: #776e65;
+    margin-right: 10px;
+  }
+  
+  #current-score, #best-score {
+    font-size: 36px;
+    color: #ffffff;
+    background-color: #bbada0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+.scores-container{
+    display: flex;
 }
 
 #content {
