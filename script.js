@@ -10,11 +10,16 @@ const currentScoreElement = document.getElementById("current-score");
 const highScoreElement = document.getElementById("best-score");
 
 let currentScore = 0;
-let highScore = localStorage.getItem("bestScore"+parseInt(areaSize)) || 0;
+let highScore = localStorage.getItem("bestScore" + parseInt(areaSize)) || 0;
 highScoreElement.innerHTML = highScore;
 
 const grid = new Grid(game_board, areaSize);
 grid.getRandomEmptyCell().linkTile(new Tile(game_board));
+
+const bot_chek = document.getElementById('bot');
+var bot_active = false;
+
+
 
 setupInputOnce();
 
@@ -29,8 +34,30 @@ function updateScore(score) {
 }
 
 function setupInputOnce() {
-    window.addEventListener("keydown", handleInput, { once: true });
+    if (bot_active) {
+        var bot_way;
+        let random = Math.random();
+        if (random < 0.25) bot_way = "ArrowUp";
+        else if (random < 0.5) bot_way = "ArrowDown";
+        else if (random < 0.75) bot_way = "ArrowRight";
+        else bot_way = "ArrowLeft";
+        // console.log("bot");
+        setTimeout(function () {
+            handleInput(new KeyboardEvent('keydown', { key: bot_way }));
+        }, 1000);
+    } else {
+        window.addEventListener("keydown", handleInput, { once: true });
+    }
 }
+
+bot_chek.addEventListener('change', function () {
+    if (bot_chek.checked) {
+        bot_active = true;
+        setupInputOnce();
+    } else {
+        bot_active = false;
+    }
+});
 
 async function handleInput(event) {
     switch (event.key) {
