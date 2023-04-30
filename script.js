@@ -11,6 +11,12 @@ grid.getRandomEmptyCell().linkTile(new Tile(game_board));
 grid.getRandomEmptyCell().linkTile(new Tile(game_board));
 grid.getRandomEmptyCell().linkTile(new Tile(game_board));
 grid.getRandomEmptyCell().linkTile(new Tile(game_board));
+grid.getRandomEmptyCell().linkTile(new Tile(game_board));
+grid.getRandomEmptyCell().linkTile(new Tile(game_board));
+grid.getRandomEmptyCell().linkTile(new Tile(game_board));
+grid.getRandomEmptyCell().linkTile(new Tile(game_board));
+grid.getRandomEmptyCell().linkTile(new Tile(game_board));
+grid.getRandomEmptyCell().linkTile(new Tile(game_board));
 
 setupInputOnce();
 
@@ -26,15 +32,15 @@ function handleInput(event) {
             break;
 
         case "ArrowDown":
-            // moveDown();
+            moveDown();
             break;
 
         case "ArrowRight":
-            // moveRight();
+            moveRight();
             break;
 
         case "ArrowLeft":
-            // moveLeft();
+            moveLeft();
             break;
 
         default:
@@ -48,6 +54,18 @@ function handleInput(event) {
 
 function moveUp() {
     slideTiles(grid.cellsGroupedByColumn);
+}
+
+function moveDown() {
+    slideTiles(grid.cellsGroupedByReversedColumn);
+}
+
+function moveLeft() {
+    slideTiles(grid.cellsGroupedByRow);
+}
+
+function moveRight() {
+    slideTiles(grid.cellsGroupedByReversedRow);
 }
 
 function slideTiles(groupCells) {
