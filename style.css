@@ -20,7 +20,7 @@ body {
 
 header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
@@ -124,6 +124,10 @@ button {
     .grid {
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
         gap: 10px;
+    }
+
+    header{
+        flex-direction: column;
     }
 
     button {

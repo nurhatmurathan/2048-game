@@ -5,6 +5,7 @@ export class Cell{
         gridElement.append(cell);
         this.y = col;
         this.x = row;
+        this.point = 0;
     }
 
     linkTile(tile){
@@ -32,11 +33,15 @@ export class Cell{
     canAccept(newTile){
         return this.isEmpty() || (!this.hasTileForMerge() && this.linkedTile.value === newTile.value);
     }
-
+    
     mergeTiles(){
-        this.linkedTile.setValue(this.linkedTile.value + this.linkedTileForMerge.value);
+        let sum = this.linkedTile.value + this.linkedTileForMerge.value;
+        // console.log(sum);
+        this.point = sum;
+        this.linkedTile.setValue(sum);
         this.linkedTileForMerge.removeFromDOM();
         this.unlinkTileForMerge();
+
     }
 
     isEmpty(){

@@ -6,12 +6,27 @@ const game_board = document.getElementById("game-board");
 const searchParams = new URLSearchParams(window.location.search);
 const areaSize = searchParams.get("area_size");
 
+const currentScoreElement = document.getElementById("current-score");
+const highScoreElement = document.getElementById("best-score");
+
+let currentScore = 0;
+let highScore = localStorage.getItem("bestScore"+parseInt(areaSize)) || 0;
+highScoreElement.innerHTML = highScore;
+
 const grid = new Grid(game_board, areaSize);
 grid.getRandomEmptyCell().linkTile(new Tile(game_board));
 
 setupInputOnce();
 
-
+function updateScore(score) {
+    currentScore += score;
+    currentScoreElement.innerHTML = currentScore;
+    if (currentScore > highScore) {
+        highScore = currentScore;
+        localStorage.setItem("bestScore" + parseInt(areaSize), highScore);
+        highScoreElement.innerHTML = highScore;
+    }
+}
 
 function setupInputOnce() {
     window.addEventListener("keydown", handleInput, { once: true });
@@ -97,6 +112,14 @@ async function slideTiles(groupCells) {
     grid.cells.forEach(cell => {
         cell.hasTileForMerge() && cell.mergeTiles()
     });
+    let score = 0;
+    groupCells.forEach(group => {
+        group.forEach(cell => {
+            score += cell.point;
+            cell.point = 0;
+        });
+    });
+    updateScore(score);
 }
 
 function slideTilesInGroup(group, promises) {
