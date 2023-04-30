@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="Image/x-icon" href="./favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>2048</title>
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -13,7 +14,13 @@
 <body>
     <div id="board-body">
         <header>
-            <h1>2048</h1>
+            <div class="head">
+                <h1>2048</h1>
+                <div class="buttons">
+                    <button class="home-btn" onclick="home()"><i class="fas fa-home"></i></button>
+                    <button class="restart-btn" onclick="restart()"><i class="fas fa-redo-alt"></i></button>
+                </div>
+            </div>
             <div class="underh1">
                 <div class="scores">
                     <div class="score">
@@ -42,6 +49,12 @@
         </div>
     </div>
 </body>
+<script>function home() {
+        window.location.href = "index.html";
+    }
+    function restart() {
+        location.reload();
+    }</script>
 <script src="./script.js" type="module"></script>
 
 </html>

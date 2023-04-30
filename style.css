@@ -64,7 +64,7 @@ h1 {
 #current-score,
 #best-score {
     font-size: 36px;
-    color: #ffffff;
+    color: #FAF8EF;
     background-color: #bbada0;
     padding: 10px;
     border-radius: 5px;
@@ -145,7 +145,7 @@ button {
     border: none;
     border-radius: 5px;
     background-color: #8F7A66;
-    color: #fff;
+    color: #FAF8EF;
     cursor: pointer;
 }
 
@@ -261,7 +261,7 @@ button {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: #FAF8EF;
     transition: .4s;
     border-radius: 50%;
 }
@@ -285,3 +285,34 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .buttons {
+    display: flex;
+  }
+  
+  button {
+    margin-left: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #BBADA0;
+    cursor: pointer;
+  }
+  
+  i {
+    font-size: 20px;
+  }
+  
+  .home-btn {
+    color: #FAF8EF;
+  }
+  
+  .restart-btn {
+    color: #FAF8EF;
+  }
