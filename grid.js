@@ -7,6 +7,11 @@ export class Grid {
         this.cells = [];
         this.GRID_SIZE = size;
         gridElement.style.setProperty("--cell-count", this.GRID_SIZE);
+        if(size == 5){
+            gridElement.style.setProperty("--cell-size", `12vmin`);
+        }else if(size == 6){
+            gridElement.style.setProperty("--cell-size", `10vmin`);
+        }
         console.log(this.GRID_SIZE);
         for (let row = 0; row < this.GRID_SIZE; row++) {
             for (let col = 0; col < this.GRID_SIZE; col++) {

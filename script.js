@@ -3,11 +3,14 @@ import { Tile } from "./tile.js";
 
 const game_board = document.getElementById("game-board");
 
-var board_area = 4;
-const grid = new Grid(game_board, board_area);
+const searchParams = new URLSearchParams(window.location.search);
+const areaSize = searchParams.get("area_size");
+
+const grid = new Grid(game_board, areaSize);
 grid.getRandomEmptyCell().linkTile(new Tile(game_board));
 
 setupInputOnce();
+
 
 
 function setupInputOnce() {
@@ -56,10 +59,10 @@ async function handleInput(event) {
     const newTile = new Tile(game_board);
     grid.getRandomEmptyCell().linkTile(newTile);
 
-    if(!canMoveUp() && !canMoveDown() && !canMoveRight() && !canMoveLeft()){
+    if (!canMoveUp() && !canMoveDown() && !canMoveRight() && !canMoveLeft()) {
         await newTile.waitForAnimationEnd();
         alert("Try adain!");
-        
+
         location.reload();
     }
 
