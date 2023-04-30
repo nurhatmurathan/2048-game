@@ -3,7 +3,7 @@ import { Tile } from "./tile.js";
 
 const game_board = document.getElementById("game-board");
 
-var board_area = 5;
+var board_area = 4;
 const grid = new Grid(game_board, board_area);
 grid.getRandomEmptyCell().linkTile(new Tile(game_board));
 
@@ -17,18 +17,34 @@ function setupInputOnce() {
 async function handleInput(event) {
     switch (event.key) {
         case "ArrowUp":
+            if (!canMoveUp()) {
+                setupInputOnce();
+                return;
+            }
             await moveUp();
             break;
 
         case "ArrowDown":
+            if (!canMoveDown()) {
+                setupInputOnce();
+                return;
+            }
             await moveDown();
             break;
 
         case "ArrowRight":
+            if (!canMoveRight()) {
+                setupInputOnce();
+                return;
+            }
             await moveRight();
             break;
 
         case "ArrowLeft":
+            if (!canMoveLeft()) {
+                setupInputOnce();
+                return;
+            }
             await moveLeft();
             break;
 
@@ -101,4 +117,34 @@ function slideTilesInGroup(group, promises) {
 
         cellWithTile.unlinkTile();
     }
+}
+
+
+function canMoveUp() {
+    return canMove(grid.cellsGroupedByColumn);
+}
+
+function canMoveDown() {
+    return canMove(grid.cellsGroupedByReversedColumn);
+}
+
+function canMoveRight() {
+    return canMove(grid.cellsGroupedByReversedRow);
+}
+
+function canMoveLeft() {
+    return canMove(grid.cellsGroupedByRow);
+}
+
+function canMove(groupCells) {
+    return groupCells.some(group => canMoveInGroup(group));
+}
+
+function canMoveInGroup(group) {
+    return group.some((cell, index) => {
+        if (index == 0 || cell.isEmpty()) return false;
+
+        const targetCell = group[index - 1];
+        return targetCell.canAccept(cell.linkedTile);
+    });
 }
